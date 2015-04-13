@@ -6,5 +6,3 @@ Functionality
 - hide the sidemenu & hide the overlay & return the X button to initial positon
 
 2) Fetch the values of option menu and apply to JS
-
-/*Hello George*/
