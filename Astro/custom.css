@@ -1,0 +1,131 @@
+body {
+	margin: 0px;
+	overflow-x: hidden;
+}
+
+.main-container {
+	background: url('astronomy-bg.jpg') 0px 0px no-repeat;
+	height: 100vh;
+	width: 100%;
+	position: relative;
+	background-size: cover;
+}
+
+.stars-container {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background: transparent;
+}
+
+figure {
+	margin: 0px;
+}
+
+.star {
+	background: #AAA7D4;
+	border-radius: 50%;
+	position: absolute;
+}
+
+/*Animation Opacity*/
+
+@-webkit-keyframes glow {
+  0%   { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+@-moz-keyframes glow {
+  0%   { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0;}
+}
+@-o-keyframes glow {
+  0%   { opacity: 0;}
+  50% { opacity: 1; }
+  100% { opacity: 0;}
+}
+@keyframes glow {
+  0%   { opacity: 0;}
+  50% { opacity: 1; }
+  100% { opacity: 0;}
+}
+
+
+/*How fast will the Opacity change*/
+
+.animation-fast {
+	-webkit-animation: glow 2s infinite normal;
+	-moz-animation: glow 2s infinite normal;
+	-o-animation: glow 2s infinite normal;
+	-ms-animation: glow 2s infinite normal;
+	animation: glow 2s infinite normal;
+}
+
+.animation-normal {
+	background: rgb(189, 195, 255);
+	-webkit-animation: glow 3s infinite normal;
+	-moz-animation: glow 3s infinite normal;
+	-o-animation: glow 3s infinite normal;
+	-ms-animation: glow 3s infinite normal;
+	animation: glow 3s infinite normal;
+}
+
+.animation-slow {
+	-webkit-animation: glow 6s infinite normal;
+	-moz-animation: glow 6s infinite normal;
+	-o-animation: glow 6s infinite normal;
+	-ms-animation: glow 6s infinite normal;
+	animation: glow 6s infinite normal;
+}
+
+.user-menu {
+	width: 13%;
+	height: 100vh;
+	background: rgb(30,30,30);
+	right: -13%;
+	position: absolute;
+	top: 0px;
+	overflow: hidden;
+}
+
+.side-navigation {
+	position: absolute;
+	top: 1.5%;
+	right: 0.5%;
+	z-index: 2;
+}
+
+.dark-overlay {
+	position: absolute;
+	left: 0px;
+	top: 0px;
+	background: transparent;
+	width: 0%;
+	height: 100%;
+
+	-webkit-transition: width 0.5s linear;
+}
+
+.side-container {
+	width: 90%;
+	margin: 0 auto;
+	padding-top: 30px;
+}
+
+h1 {
+	font-size: 1.3em;
+	color: rgb(239, 239, 239);
+}
+
+.star-options {
+	width: 100%;
+	height: 35px;
+	background: rgb(50,50,50);
+	color: white;
+	border-color: transparent;
+}
+
+.opened {
+	-webkit-transition: right 0.5s ease-in;
+}
