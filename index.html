@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Games</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script data-require="ui-bootstrap@*" data-semver="0.12.1" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.12.1.min.js"></script>
+
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="app/components/home/gamesController.js"></script>
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/custom.css">
+</head>
+<body ng-app="gamesApp">
+
+
+<!-- After Joomla Slider Games Section starts-->
+
+<section ng-controller="GamesController" class="games-placeholder">
+
+ <div class="container games">
+
+    <!-- Games Navigation and Search -->
+    <div class="row games-nav">
+        <div class="col-md-12">
+
+            <ul class="games__categories col-md-10">
+                <li ng-repeat="category in categories">
+                    <a ng-click="getGamesByCategory(category)" class="games-tab" href="">{{category}}</a>
+                </li>
+            </ul>
+
+            <input ng-model="searchName" type="search" placeholder="Search" class="games__search col-md-2">
+        </div>
+    </div>
+     <!-- End of Games Nav -->
+
+
+     <!-- Games Container -->
+    <div class="row games-container">
+
+        <div class="col-md-12">
+            <pagination
+                    ng-model="currentPage"
+                    total-items="allGames.length"
+                    max-size="maxSize"
+                    boundary-links="true"
+                    class="pull-right games-pagination"
+
+                    >
+            </pagination>
+        </div>
+
+
+        <!-- Nth row of games -->
+        <div class="col-md-12">
+            <div ng-repeat="game in filteredGames | filter:searchName" class="game-item col-md-3">
+
+                <!-- to be changed with {{game.image}} -->
+                <img class="games__img" ng-src="{{path + game.image}}">
+                <span class="games__name">{{game.fullName}} {{game.categoryDesc}}</span>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+
+ </div>
+
+</section>
+
+
+</body>
+</html>
