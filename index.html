@@ -42,21 +42,21 @@
     <div class="row games-container">
 
         <div class="col-md-12">
+
             <pagination
                     ng-model="currentPage"
-                    total-items="allGames.length"
+                    total-items="getFilteredGamesLength(dataSet)"
                     max-size="maxSize"
                     boundary-links="true"
-                    class="pull-right games-pagination"
-
-                    >
+                    class="pull-right games-pagination">
             </pagination>
+
         </div>
 
 
         <!-- Nth row of games -->
         <div class="col-md-12">
-            <div ng-repeat="game in filteredGames | filter:searchName" class="game-item col-md-3">
+            <div ng-repeat="game in getfilteredGames(dataSet) | filter:searchName" class="game-item col-md-3">
 
                 <!-- to be changed with {{game.image}} -->
                 <img class="games__img" ng-src="{{path + game.image}}">
