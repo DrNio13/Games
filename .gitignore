@@ -24,6 +24,8 @@ gen
 
 ## Directory-based project format:
 .idea/
+games.json
+assets
 # if you remove the above rule, at least ignore the following:
 
 # User-specific stuff:
