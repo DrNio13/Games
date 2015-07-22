@@ -45,15 +45,16 @@
 
             <pagination
                     ng-model="currentPage"
-                    total-items="filteredSkata.length"
                     max-size="maxSize"
                     boundary-links="true"
+                    total-items="filteredSkata.length"
                     class="pull-right games-pagination">
             </pagination>
 
 
         </div>
 
+        <span style="color: #fff;">{{currentPage}}</span>
 
         <!-- Nth row of games -->
         <div class="col-md-12">

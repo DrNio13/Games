@@ -11,11 +11,18 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
     $scope.allGames = [];
     $scope.filteredGames = [];
 
+
+
+    // To be deleted when uploading to Production server
+    $scope.path = "https://assosplay.avacsum.com/Casino";
+
+
+
     /*
     * Set parameters for 20 games
     *
     * */
-    $scope.currentPage = 1;
+    //$scope.currentPage = 1;
 
     // Games per page
     $scope.numPerPage = 20;
@@ -32,13 +39,15 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
         $scope.allGames = data;
 
         // Set the first filteredGames to be the first games
-        $scope.filteredGames = $scope.allGames.slice(0, $scope.numPerPage);
+        //$scope.filteredGames = $scope.allGames.slice(0, $scope.numPerPage);
 
         // Get all categories
         $scope.getAllCategories(data);
 
         // show first @numPerPage games
-        //$scope.getFilteredGames(data, data.length);
+        $scope.filteredSkata = data;
+
+        //$log.log(data.length);
 
 
     });
@@ -65,25 +74,6 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
 
 
 
-
-    // To be deleted when uploading to Production server
-    $scope.path = "https://assosplay.avacsum.com/Casino";
-
-    /*
-     * Use Angular $watch to change pagination and the set of data
-     */
-    $scope.$watch('currentPage + numPerPage', function() {
-
-        var begin = (($scope.currentPage - 1) * $scope.numPerPage)
-            , end = begin + $scope.numPerPage;
-
-        $scope.filteredSkata = $scope.allGames.slice(begin, end);
-
-
-    });
-
-
-
     /*
     * Show only the specific games of the category
     * */
@@ -92,7 +82,9 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
         // store all the data
         var allGames = $scope.allGames;
 
-        var categoryGames = [];
+        $scope.currentPage = 1;
+
+        $scope.categoryGames = [];
 
         // for every game in data
         allGames.forEach(function(game){
@@ -106,7 +98,7 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
                     // the category that was clicked
                     if(game[prop] === catClicked){
 
-                        categoryGames.push(game);
+                        $scope.categoryGames.push(game);
 
                     }
                 }
@@ -115,14 +107,20 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
         });
 
 
-
         // array of selected games
-        $scope.filteredSkata = categoryGames ;
+        $scope.filteredSkata = $scope.categoryGames ;
 
-        //$log.log($scope.filteredSkata);
+        $scope.$watch('currentPage + numPerPage', function() {
+            var begin = (($scope.currentPage - 1) * $scope.numPerPage),
+                end = begin + $scope.numPerPage;
+
+            $scope.filteredSkata = $scope.categoryGames.slice(begin, end);
+
+        });
+
+
         $log.log($scope.filteredSkata.length);
 
-        return categoryGames;
 
     };
 
