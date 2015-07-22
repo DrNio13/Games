@@ -1,6 +1,7 @@
 
 var gamesApp = angular.module('gamesApp',['ui.bootstrap']);
 
+
 gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,$http,$log){
 
     /*
@@ -11,7 +12,7 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
     $scope.filteredGames = [];
 
     /*
-    * Set parameters for 100 games
+    * Set parameters for 20 games
     *
     * */
     $scope.currentPage = 1;
@@ -30,8 +31,22 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
 
         $scope.allGames = data;
 
-        // Set the first filteredGames to be the first 20 games
-        $scope.filteredGames = $scope.allGames.slice(0, 20);
+        // Set the first filteredGames to be the first games
+        $scope.filteredGames = $scope.allGames.slice(0, $scope.numPerPage);
+
+        // Get all categories
+        $scope.getAllCategories(data);
+
+        // show first @numPerPage games
+        //$scope.getFilteredGames(data, data.length);
+
+
+    });
+
+
+
+    // Render all categories
+    $scope.getAllCategories = function(data){
 
         // All categories of the data set
         $scope.categories = [];
@@ -46,7 +61,8 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
 
         });
 
-    });
+    };
+
 
 
 
@@ -54,22 +70,14 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
     $scope.path = "https://assosplay.avacsum.com/Casino";
 
     /*
-    * Use Angular $watch to change pagination and the set of data
-    * */
+     * Use Angular $watch to change pagination and the set of data
+     */
     $scope.$watch('currentPage + numPerPage', function() {
 
         var begin = (($scope.currentPage - 1) * $scope.numPerPage)
             , end = begin + $scope.numPerPage;
 
-        $scope.filteredGames = $scope.allGames.slice(begin, end);
-
-        /*if ($scope.getGamesByCategory() === true){
-            $log.log('nai malaka');
-        }
-        else {
-            $log.log('oxi malaka');
-        }*/
-
+        $scope.filteredSkata = $scope.allGames.slice(begin, end);
 
 
     });
@@ -77,11 +85,9 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
 
 
     /*
-    * Show only the specific category of games
+    * Show only the specific games of the category
     * */
-    $scope.getGamesByCategory = function(catClicked){
-
-        var used = false;
+    $scope.setGamesByCategory = function(catClicked){
 
         // store all the data
         var allGames = $scope.allGames;
@@ -99,8 +105,7 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
 
                     // the category that was clicked
                     if(game[prop] === catClicked){
-                       //$log.log(game);
-                        //return game;
+
                         categoryGames.push(game);
 
                     }
@@ -109,12 +114,19 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
 
         });
 
-        $scope.filteredGames = categoryGames;
 
-        //used = true;
-        return used;
+
+        // array of selected games
+        $scope.filteredSkata = categoryGames ;
+
+        //$log.log($scope.filteredSkata);
+        $log.log($scope.filteredSkata.length);
+
+        return categoryGames;
 
     };
+
+
 
 
 }]);

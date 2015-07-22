@@ -28,7 +28,7 @@
 
             <ul class="games__categories col-md-10">
                 <li ng-repeat="category in categories">
-                    <a ng-click="getGamesByCategory(category)" class="games-tab" href="">{{category}}</a>
+                    <a ng-click="setGamesByCategory(category)" class="games-tab" href="">{{category}}</a>
                 </li>
             </ul>
 
@@ -45,20 +45,22 @@
 
             <pagination
                     ng-model="currentPage"
-                    total-items="getFilteredGamesLength(dataSet)"
+                    total-items="filteredSkata.length"
                     max-size="maxSize"
                     boundary-links="true"
                     class="pull-right games-pagination">
             </pagination>
+
 
         </div>
 
 
         <!-- Nth row of games -->
         <div class="col-md-12">
-            <div ng-repeat="game in getfilteredGames(dataSet) | filter:searchName" class="game-item col-md-3">
+            <div ng-repeat="game in filteredSkata" class="game-item col-md-3">
 
                 <!-- to be changed with {{game.image}} -->
+
                 <img class="games__img" ng-src="{{path + game.image}}">
                 <span class="games__name">{{game.fullName}} {{game.categoryDesc}}</span>
 
