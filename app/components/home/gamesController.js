@@ -45,7 +45,7 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
         $scope.getAllCategories(data);
 
         // show first @numPerPage games
-        $scope.filteredSkata = data;
+        $scope.filteredSk = data;
 
         //$log.log(data.length);
 
@@ -108,18 +108,18 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
 
 
         // array of selected games
-        $scope.filteredSkata = $scope.categoryGames ;
+        $scope.filteredSk = $scope.categoryGames ;
 
         $scope.$watch('currentPage + numPerPage', function() {
             var begin = (($scope.currentPage - 1) * $scope.numPerPage),
                 end = begin + $scope.numPerPage;
 
-            $scope.filteredSkata = $scope.categoryGames.slice(begin, end);
+            $scope.filteredSk = $scope.categoryGames.slice(begin, end);
 
         });
 
 
-        $log.log($scope.filteredSkata.length);
+        $log.log($scope.filteredSk.length);
 
 
     };
