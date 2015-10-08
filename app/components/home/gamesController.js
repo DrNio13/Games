@@ -14,7 +14,7 @@ gamesApp.controller('GamesController',['$scope','$http','$log', function($scope,
 
 
     // To be deleted when uploading to Production server
-    $scope.path = "https://assosplay.avacsum.com/Casino";
+    $scope.path = "url_here";
 
 
 
